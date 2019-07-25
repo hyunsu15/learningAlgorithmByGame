@@ -1,0 +1,15 @@
+1. 익명클래스를 잘활용하면 더 이쁜 코드를 만들수있음.
+
+2. 인덱스를 찾는 문제는 TreeMap으로 좋다고 느낌.
+
+3. Collections 함수의 응용을 더 잘해야 겠다는 생각이 듬.// 주로 sort만 주로 쓰는 나를 반성하게 됨.
+
+
+번호별 대표 코드
+
+1. ArrayList(8){{for(int i=0;i<8;i++)add(sc.nextInt());}};
+
+2. TreeMap<Integer,Integer> treeMap;//Index,Value
+
+3. 자료구조.indexOf(Collections.max(자료구조));
+

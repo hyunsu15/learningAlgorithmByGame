@@ -1,0 +1,20 @@
+1. 나는 boolean 을 추가하여, 같은지 아닌지를 함.
+굳이 그럴 필요 없고, 만약 같은 값이 나오면, 값을 절대값 취하면 될듯.
+
+2. || 식과 ?의 활용 //상당히 짧은 줄로 구현가능해짐. 
+
+3. 
+
+
+번호별 대표 코드
+
+1. Myhazael의코드
+if(Math.abs(cur) == Math.abs(closest)){
+    closest = Math.max(closest,cur);
+}//이렇게 하더라도 큰문제는 되지않으며 오히려 내코드보다 좋은 것 같다.
+
+2. result = result == null || Math.abs(temp) < Math.abs(result)
+                    || (Math.abs(temp) == Math.abs(result) && temp > 0) ? temp : result;
+
+3. 
+
