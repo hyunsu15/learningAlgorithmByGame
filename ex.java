@@ -1,4 +1,6 @@
 import java.util.*;
+import java.io.*;
+import java.math.*;
 
 /**
  * Auto-generated code below aims at helping you parse the standard input
@@ -7,64 +9,66 @@ import java.util.*;
 class Hello2030 {
 
     static Scanner in = new Scanner(System.in);
-    static String[][] array;
-    static int width;
-    static int height;
+    static int price;
+    static int[] payArray;
+    static int[] assetArray;
 
     public static void main(String args[]) {
         initialize();
-        printArray();
+        judgeMoney();
+        printPayArray();
     }
 
     static void initialize() {
-        width = in.nextInt();
-        height = in.nextInt();
-        if (in.hasNextLine())
-            in.nextLine();
-        array = new String[height][width];
-        arrayInitial();
+        int N = in.nextInt();// 사람수
+        price = in.nextInt();// 선물가격
 
-    }
+        assetArray = new int[N];
+        payArray = new int[N];
 
-    static void arrayInitial() {
-        for (int i = 0; i < height; i++) {
-            String line = in.nextLine(); // width characters, each either 0 or
-            for (int j = 0; j < line.length(); j++)
-                array[i][j] = line.charAt(j) == '0' ? "" + j + " " + i : "x";
+        for (int i = 0; i < N; i++) {
+            int B = in.nextInt();
+            assetArray[i] = B;
         }
+        Arrays.sort(assetArray);
     }
 
-    static void printArray() {
-        for (int i = 0; i < height; i++)// y
-            for (int j = 0; j < width; j++)// x
-                callGetArray(j, i);
-    }
+    static void judgeMoney() {
+        int sum = 0;
+        for (int i = 0; i < assetArray.length; i++)
+            sum += assetArray[i];
 
-    static void callGetArray(int x, int y) {
-        if (!isError(x, y) && !isX(x, y))
-            System.out.println(getArray(x, y, 0) + " " + getArray(x + 1, y, 1) + " " + getArray(x, y + 1, 2));
-    }
-
-    static String getArray(int x, int y, int isXAdd) {
-        String notValue = "-1 -1";
-        if (isError(x, y))
-            return notValue;
-        else if (!array[y][x].equals("x"))
-            return array[y][x];
-        else if (isXAdd == 1)
-            return getArray(x + 1, y, isXAdd);
-        else if (isXAdd == 2)
-            return getArray(x, y + 1, isXAdd);
-
-        return "";
+        if (price > sum)
+            System.out.println("IMPOSSIBLE");
+        else
+            calculateMoney();
 
     }
 
-    static boolean isError(int x, int y) {
-        return x >= width || y >= height ? true : false;
+    static void calculateMoney() {
+        int i = 0;
+        int num = assetArray.length;
+        while (i < assetArray.length) {
+            int allowance = minMoney(num);
+            if (allowance > assetArray[i])
+                price -= allowance;
+            else
+                payArray[i] = allowance;
+
+            i++;
+            num--;
+
+        }
+
     }
 
-    static boolean isX(int x, int y) {
-        return array[y][x].equals("x");
+    static int minMoney(int num) {
+        return Math.ceil((double) price / num);
     }
+
+    static void printPayArray() {
+        for (int i = 0; i < payArray.length; i++)
+            System.out.println(payArray[i]);
+    }
+
 }
