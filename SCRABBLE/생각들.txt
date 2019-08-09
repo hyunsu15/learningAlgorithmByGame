@@ -1,0 +1,50 @@
+1. 코드를 작성하고 처음 채점했을 당시에는 HashMap이 불필요하다는 생각을 했다. 
+차라리 ArrayList 두개로 하는것이 훨씬 다형성이 있다고 판단했다.
+
+안좋다고 생각했던 이유
+1) 이때 당시에 객체를 최대한 안만들려고 하는 생각이 많았던 것같다.(객체를 안만들고 하는 풀이가 멋있다고 판단한듯.)
+2) HashMap을 많이쓰지않아서 개념미숙.
+
+하지만 생각들을 작성하는시점은 이 책을 끝마치고 나서야 이때 당시의 생각이 잘못 되었음을 알았다.
+HashMap을 사용하면,
+1) 검색을 빨리 할수있어서, 불필요한 중복일을 안해도 된다.
+2) 트리와 그래프를 만들때 상당히 유용하게 쓰인다.
+3) 객체를 만들어서 HashMap을 사용한다면, 
+3-1)트리와 그래프를 더 쉽게 만들수있으며, 보기 좋은 코드를 만들수있다는 것을 느낌.
+
+한 프로그래머 유튜버가 왜 HashTable이 기본이라고 하는지 새삼 느끼게 됨.
+
+2.  눈에 보이는 반복문을 줄이는 연습이 좀더 필요한것 같다.
+
+
+번호별 대표 코드
+
+1. 없음.
+2. 3-2코드 
+ private static boolean isPossible(String tested, String allowed) {
+        for (char ch: tested.toCharArray()) {
+            if (allowed.indexOf(ch) >= 0) {
+                allowed = allowed.replaceFirst(Character.toString(ch), "");
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+내꺼코드
+    static StringBuffer wordDelete(StringBuffer word) {
+        for (int j = 0; j < alphabet.length(); j++) {
+            for (int k = 0; k < word.length();) {
+                if (word.charAt(k) == alphabet.charAt(j)) {
+                    word.deleteCharAt(k);
+                    k = 0;
+                    break;
+                } else
+                    k++;
+            }
+        }
+        return word;
+    }
+이 둘을 잘 조합한다면, 더 좋은 코드가 될거라고 생각함.
+
+

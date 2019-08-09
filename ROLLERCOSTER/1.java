@@ -40,7 +40,7 @@ class Solution {
             sum += que[i];
 
         if (sum < limit)
-            System.out.println(sum * limit);
+            System.out.println(sum * play);
 
         return sum < limit ? true : false;
     }
@@ -56,8 +56,9 @@ class Solution {
             }
             revenue += hashmap.get(beginIndex).PeopleNum;
             beginIndex = hashmap.get(beginIndex).nextIndex;
+            playNumber++;
         }
-        playNumber++;
+
     }
 
     public static NextIndexPeople calculateNextIndexPeople(int beginIndex) {
